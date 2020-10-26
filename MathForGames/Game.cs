@@ -207,11 +207,11 @@ namespace MathForGames
             player.Speed = 5;
 
             //Add actors to the scenes
-            scene1.AddActor(Player);
+            scene1.AddActor(player);
             scene1.AddActor(enemyHigh);
             scene1.AddActor(enemyMid);
             scene1.AddActor(enemyLow);
-            scene2.AddActor(Player);
+            scene2.AddActor(player);
             
             //Sets the starting scene index and adds the scenes to the scenes array
             int startingSceneIndex = 0;
@@ -261,7 +261,7 @@ namespace MathForGames
         public void Run()
         {
             //Call start for all objects in game
-
+            Start();
 
             //Loops the game until either the game is set to be over or the window closes
             while(!_gameOver || !Raylib.WindowShouldClose())
