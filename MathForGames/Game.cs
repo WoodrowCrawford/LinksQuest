@@ -199,8 +199,11 @@ namespace MathForGames
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
 
             //Initialize the enmies starting values
-            enemyHigh.Speed = 2;
+            enemyHigh.Speed = 3;
+            enemyHigh.Target = player;
             enemyMid.Speed = 2;
+            enemyMid.Target = player;
+            enemyLow.Speed = 1;
             enemyLow.Target = player;
 
             //Set player's starting speed
@@ -264,7 +267,7 @@ namespace MathForGames
             Start();
 
             //Loops the game until either the game is set to be over or the window closes
-            while(!_gameOver || !Raylib.WindowShouldClose())
+            while(!_gameOver && !Raylib.WindowShouldClose())
             {
                 //Stores the current time between frames
                 float deltaTime = Raylib.GetFrameTime();
@@ -276,6 +279,7 @@ namespace MathForGames
                 while (Console.KeyAvailable)
                     Console.ReadKey(true);
             }
+            End();
 
             
         }

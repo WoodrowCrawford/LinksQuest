@@ -105,5 +105,7 @@ namespace MathForGames
         {
             return new Vector3(lhs.X / scalar, lhs.Y / scalar, lhs.Z / scalar);
         }
+
+        
     }
 }

@@ -16,6 +16,7 @@ namespace MathForGames
         protected char _icon = ' ';
         protected Vector2 _position;
         protected Vector2 _velocity;
+        protected Matrix3 _transform;
         private Vector2 _facing;
         protected ConsoleColor _color;
         protected Color _rayColor;
@@ -27,6 +28,11 @@ namespace MathForGames
             set { _facing = value; }
         }
 
+        public Matrix3 Transform
+        {
+           get
+
+        }
 
         public Vector2 Position
         {
@@ -103,16 +109,16 @@ namespace MathForGames
             UpdateFacing();
 
             //Increase position by the current velocity
-            _position += _velocity;
+            _position += _velocity * deltaTime;
         }
 
         public virtual void Draw()
         {
             //Draws the actor and a line indicating it facing to the raylib window.
             //Scaled to match console movement
-            Raylib.DrawText(_icon.ToString(), (int)_position.X * 32, (int)(_position.Y * 32), 32, _rayColor);
+            Raylib.DrawText(_icon.ToString(), (int)(_position.X * 32), (int)(_position.Y * 32), 32, _rayColor);
             Raylib.DrawLine(
-                (int)Position.X * 32,
+                (int)(Position.X * 32),
                 (int)(Position.Y * 32),
                 (int)((Position.X + Forward.X) * 32),
                 (int)((Position.Y + Forward.Y) * 32),
