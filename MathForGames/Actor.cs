@@ -30,9 +30,16 @@ namespace MathForGames
 
         public Matrix3 Transform
         {
-           get
-
+            get
+            {
+                return new Matrix3
+            }
+            set
+            {
+                _transform = 
+            }
         }
+        
 
         public Vector2 Position
         {

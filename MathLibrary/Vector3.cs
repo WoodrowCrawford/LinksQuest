@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MathForGames
 {
-   public class Vector3
+    public class Vector3
     {
         private float _x;
         private float _y;
@@ -78,7 +76,10 @@ namespace MathForGames
 
         public static Vector3 Normalize(Vector3 vector)
         {
-            return Normalize(vector);
+            if (vector.Magnitude == 0)
+                return new Vector3();
+
+            return (vector/vector.Magnitude);
         }
 
         public static float DotProduct(Vector3 lhs, Vector3 rhs)
@@ -106,6 +107,6 @@ namespace MathForGames
             return new Vector3(lhs.X / scalar, lhs.Y / scalar, lhs.Z / scalar);
         }
 
-        
+
     }
 }

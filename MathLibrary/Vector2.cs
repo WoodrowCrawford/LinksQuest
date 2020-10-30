@@ -37,6 +37,7 @@ namespace MathLibrary
             get
             {
                 return (float)Math.Sqrt(X * X + Y * Y);
+
             }
         }
 
@@ -72,7 +73,7 @@ namespace MathLibrary
             if (vector.Magnitude == 0)
                 return new Vector2();
 
-            return Normalize(vector);
+            return (vector/vector.Magnitude);
         }
 
         /// <summary>
