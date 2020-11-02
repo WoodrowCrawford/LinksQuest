@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using MathLibrary;
 using Raylib_cs;
@@ -14,10 +15,13 @@ namespace MathForGames
     class Actor
     {
         protected char _icon = ' ';
-        protected Vector2 _position;
         protected Vector2 _velocity;
-        protected Matrix3 _transform;
+        protected Matrix3 _transform = new Matrix3();
+        protected Matrix3 _translation = new Matrix3();
+        protected Matrix3 _rotation = new Matrix3();
+        private Vector2 _position;
         private Vector2 _facing;
+        private Matrix3 _scale;
         protected ConsoleColor _color;
         protected Color _rayColor;
         public bool Started { get; private set; }
@@ -32,11 +36,7 @@ namespace MathForGames
         {
             get
             {
-                return new Matrix3
-            }
-            set
-            {
-                _transform = 
+                return new Matrix3();
             }
         }
         
@@ -45,11 +45,13 @@ namespace MathForGames
         {
             get
             {
-                return _position;
+                return new Vector2(_transform.m13, _transform.m23);
             }
             set
             {
-                _position = value;
+                _translation.m13 = value.X;
+                _translation.m23 = value.Y;
+                
             }
         }
 
@@ -63,6 +65,38 @@ namespace MathForGames
             {
                 _velocity = value;
             }
+        }
+
+        public void SetTranslate(Vector2 position)
+        {
+            _translation.m11 = position.X * 0;
+            _translation.m21 = position.Y * 3;
+            
+
+        }
+
+        public void SetRotation(float radians)
+        {
+            _rotation.m11 = (float)(Math.Cos(radians));
+            _rotation.m12 = (float)(Math.Sin(radians));
+            _rotation.m21 = (float)(Math.Cos(radians)-1);
+            _rotation.m22 = (float)(Math.Sin(radians)-1);
+        }
+
+        public void SetScale(float x, float y)
+        {
+            _scale.m11 = (float)Position.X * 5;
+            _scale.m21 = (float)Position.Y * 3;
+        }
+
+        public void UpdateTransform()
+        {
+            SetTranslate(Position);
+            
+            SetScale(Position.X, Position.Y);
+            
+
+
         }
 
 
