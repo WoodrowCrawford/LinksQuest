@@ -16,12 +16,11 @@ namespace MathForGames
     {
         protected char _icon = ' ';
         protected Vector2 _velocity;
-        protected Matrix3 _globalTransform;
-        protected Matrix3 _localTransform;
+        protected Matrix3 _globalTransform = new Matrix3();
+        protected Matrix3 _localTransform =new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
         protected Vector2 _position;
-        private Vector2 _facing;
         protected Matrix3 _scale = new Matrix3();
         protected ConsoleColor _color;
         protected Color _rayColor;
@@ -204,11 +203,11 @@ namespace MathForGames
             //Scaled to match console movement
             Raylib.DrawText(_icon.ToString(), (int)(_position.X * 32), (int)(_position.Y * 32), 32, _rayColor);
             Raylib.DrawLine(
-                (int)(LocalPosition.X * 32),
+                (int)(LocalPosition.X *32),
                 (int)(LocalPosition.Y * 32),
                 (int)((LocalPosition.X + Forward.X) * 32),
                 (int)((LocalPosition.Y + Forward.Y) * 32),
-                Color.WHITE
+                Color.BLUE
             );
 
             //Changes the color of the console text to be this actors color
