@@ -15,6 +15,7 @@ namespace MathForGames
     {
         private Actor _target;
         private Color _alertColor;
+
         private Vector2 _patrolPointA;
         private Vector2 _patrolPointB;
         private Vector2 _currentPoint;
@@ -82,6 +83,7 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
+  
             _alertColor = Color.RED;
             PatrolPointA = patrolPointA;
             PatrolPointB = patrolPointB;
@@ -154,5 +156,8 @@ namespace MathForGames
             UpdatePatrolLocation();
             base.Update(deltaTime);
         }
+
+      
+
     }
 }

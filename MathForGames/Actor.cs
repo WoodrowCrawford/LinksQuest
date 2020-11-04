@@ -19,9 +19,9 @@ namespace MathForGames
         protected Matrix3 _transform = new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
-        private Vector2 _position;
+        protected Vector2 _position;
         private Vector2 _facing;
-        private Matrix3 _scale;
+        protected Matrix3 _scale = new Matrix3();
         protected ConsoleColor _color;
         protected Color _rayColor;
         public bool Started { get; private set; }
@@ -69,34 +69,29 @@ namespace MathForGames
 
         public void SetTranslate(Vector2 position)
         {
-            _translation.m11 = position.X * 0;
-            _translation.m21 = position.Y * 3;
+            _translation.m13 = position.X;
+            _translation.m23 = position.Y;
             
 
         }
 
         public void SetRotation(float radians)
         {
-            _rotation.m11 = (float)(Math.Cos(radians));
-            _rotation.m12 = (float)(Math.Sin(radians));
-            _rotation.m21 = (float)(Math.Cos(radians)-1);
-            _rotation.m22 = (float)(Math.Sin(radians)-1);
+            _rotation.m11 = (float)Math.Cos(radians);
+            _rotation.m12 = -(float)Math.Sin(radians);
+            _rotation.m21 = -(float)Math.Sin(radians);
+            _rotation.m22 = (float)Math.Cos(radians);
         }
 
         public void SetScale(float x, float y)
         {
-            _scale.m11 = (float)Position.X * 5;
-            _scale.m21 = (float)Position.Y * 3;
+            _scale.m11 = x;
+            _scale.m21 = y;
         }
 
         public void UpdateTransform()
         {
-            SetTranslate(Position);
-            
-            SetScale(Position.X, Position.Y);
-            
-
-
+            _transform = _translation * _rotation * _scale;
         }
 
 
@@ -146,6 +141,7 @@ namespace MathForGames
         
         public virtual void Update(float deltaTime)
         {
+            UpdateTransform();
             //Before the actor is moved, update the direction it's facing
             UpdateFacing();
 
