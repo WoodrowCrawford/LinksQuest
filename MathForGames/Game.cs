@@ -210,7 +210,7 @@ namespace MathForGames
             //Set player's starting speed
             player.Speed = 5;
             //Sets the player size and rotation
-            player.SetTranslate(new Vector2(10, 10));
+            player.SetTranslate(new Vector2(10, 19));
             player.SetRotation(3);
             player.SetScale(1, 4);
             //Add actors to the scenes

@@ -201,14 +201,16 @@ namespace MathForGames
         {
             //Draws the actor and a line indicating it facing to the raylib window.
             //Scaled to match console movement
+            
             Raylib.DrawText(_icon.ToString(), (int)(_position.X * 32), (int)(_position.Y * 32), 32, _rayColor);
             Raylib.DrawLine(
-                (int)(LocalPosition.X *32),
+                (int)(LocalPosition.X * 32),
                 (int)(LocalPosition.Y * 32),
                 (int)((LocalPosition.X + Forward.X) * 32),
                 (int)((LocalPosition.Y + Forward.Y) * 32),
                 Color.BLUE
-            );
+
+            ) ;
 
             //Changes the color of the console text to be this actors color
             Console.ForegroundColor = _color;
