@@ -195,7 +195,7 @@ namespace MathForGames
             Enemy enemyHigh = new Enemy(0, 5, Color.GREEN, new Vector2(0,5), new Vector2(30, 5), '■', ConsoleColor.Green);
             Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
             Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
-            Player player = new Player(0, 1,Color.BLUE, '@', ConsoleColor.Red);
+            Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
 
             //Initialize the enmies starting values
@@ -210,9 +210,9 @@ namespace MathForGames
             //Set player's starting speed
             player.Speed = 5;
             //Sets the player size and rotation
-            player.SetTranslate(new Vector2(10, 10));
-            player.SetRotation(1);
-            player.SetScale(2, 4);
+            player.SetTranslate(new Vector2(10, 19));
+            player.SetRotation(3);
+            player.SetScale(1, 4);
             //Add actors to the scenes
             scene1.AddActor(player);
             scene1.AddActor(enemyHigh);
