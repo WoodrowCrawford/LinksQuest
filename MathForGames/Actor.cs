@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.WebSockets;
+using System.Runtime.Serialization.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Xml;
 using MathLibrary;
 using Raylib_cs;
 
@@ -16,20 +20,33 @@ namespace MathForGames
     {
         protected char _icon = ' ';
         protected Vector2 _velocity;
+<<<<<<< Updated upstream
         protected Matrix3 _globalTransform = new Matrix3();
         protected Matrix3 _localTransform =new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
         protected Vector2 _position;
+=======
+        protected Matrix3 _globalTransform;
+        protected Matrix3 _localTransform = new Matrix3();
+        protected Matrix3 _translation = new Matrix3();
+        protected Matrix3 _rotation = new Matrix3();
+>>>>>>> Stashed changes
         protected Matrix3 _scale = new Matrix3();
         protected ConsoleColor _color;
         protected Color _rayColor;
         protected Actor _parent;
         protected Actor[] _children = new Actor[0];
+<<<<<<< Updated upstream
+=======
+        protected float _rotationAngle;
+        private float _collisionRadius;
+>>>>>>> Stashed changes
         public bool Started { get; private set; }
 
         public Vector2 Forward
         {
+<<<<<<< Updated upstream
             get
             {
                 return new Vector2(_localTransform.m11, _localTransform.m21);
@@ -38,6 +55,19 @@ namespace MathForGames
         }
 
        
+=======
+           get
+            {
+                return new Vector2(_localTransform.m11, _localTransform.m21);
+            }
+            set
+            {
+                Vector2 lookPosition = LocalPosition + value.Normalized;
+                LookAt(lookPosition);
+            }
+        }
+
+>>>>>>> Stashed changes
         public Vector2 WorldPosition
         {
             get
@@ -46,6 +76,7 @@ namespace MathForGames
             }
         }
 
+<<<<<<< Updated upstream
         public Vector2 LocalPosition
         {
             get
@@ -58,6 +89,19 @@ namespace MathForGames
                 _translation.m23 = value.Y;
                 
             }
+=======
+        public Vector2 LocalPosition
+        {
+            get
+            {
+                return new Vector2(_localTransform.m13, _localTransform.m23);
+            }
+            set
+            {
+                _translation.m13 = value.X;
+                _translation.m23 = value.Y;
+            }
+>>>>>>> Stashed changes
         }
 
         public Vector2 Velocity
@@ -71,6 +115,10 @@ namespace MathForGames
                 _velocity = value;
             }
         }
+        
+
+       
+
 
         public void SetTranslate(Vector2 position)
         {
@@ -108,10 +156,15 @@ namespace MathForGames
         {
             _rayColor = Color.WHITE;
             _icon = icon;
-            _position = new Vector2(x, y);
+            _localTransform = new Matrix3();
+            LocalPosition = new Vector2(x, y);
             _velocity = new Vector2();
             _color = color;
+<<<<<<< Updated upstream
            
+=======
+
+>>>>>>> Stashed changes
         }
 
 
@@ -123,9 +176,11 @@ namespace MathForGames
         public Actor(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : this (x, y, icon, color)
         {
+            _localTransform = new Matrix3();
             _rayColor = rayColor;
         }
 
+<<<<<<< Updated upstream
 
         public void AddChild(Actor child)
         {
@@ -168,6 +223,21 @@ namespace MathForGames
             child._parent = null;
             return childRemoved;
         }
+=======
+        public void AddChild(Actor child)
+        {
+            Actor[] tempArray = new Actor[_children.Length + 1];
+
+            for (int i = 0; i < _children.Length; i++)
+            {
+                tempArray[i] = _children[i];
+            }
+
+            tempArray[_children.Length] = child;
+            _children = tempArray;
+            child._parent = this;
+
+>>>>>>> Stashed changes
 
         /// <summary>
         /// Updates the actors forward vector to be
@@ -189,28 +259,40 @@ namespace MathForGames
         
         public virtual void Update(float deltaTime)
         {
+<<<<<<< Updated upstream
             UpdateTransform();
+=======
+
+>>>>>>> Stashed changes
             //Before the actor is moved, update the direction it's facing
             UpdateFacing();
 
             //Increase position by the current velocity
-            _position += _velocity * deltaTime;
+            LocalPosition += _velocity * deltaTime;
         }
 
         public virtual void Draw()
         {
             //Draws the actor and a line indicating it facing to the raylib window.
             //Scaled to match console movement
+<<<<<<< Updated upstream
             
             Raylib.DrawText(_icon.ToString(), (int)(_position.X * 32), (int)(_position.Y * 32), 32, _rayColor);
+=======
+>>>>>>> Stashed changes
             Raylib.DrawLine(
                 (int)(LocalPosition.X * 32),
                 (int)(LocalPosition.Y * 32),
                 (int)((LocalPosition.X + Forward.X) * 32),
                 (int)((LocalPosition.Y + Forward.Y) * 32),
+<<<<<<< Updated upstream
                 Color.BLUE
 
             ) ;
+=======
+                Color.WHITE
+            );
+>>>>>>> Stashed changes
 
             //Changes the color of the console text to be this actors color
             Console.ForegroundColor = _color;
@@ -219,7 +301,7 @@ namespace MathForGames
             if(LocalPosition.X >= 0 && LocalPosition.X < Console.WindowWidth 
                 && LocalPosition.Y >= 0  && LocalPosition.Y < Console.WindowHeight)
             {
-                Console.SetCursorPosition((int)_position.X, (int)_position.Y);
+                Console.SetCursorPosition((int)LocalPosition.X, (int)LocalPosition.Y);
                 Console.Write(_icon);
             }
             

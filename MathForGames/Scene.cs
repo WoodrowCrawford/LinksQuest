@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathLibrary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using MathLibrary;
@@ -10,9 +11,15 @@ namespace MathForGames
         private Actor[] _actors;
         private Matrix3 _transform;
 
+<<<<<<< Updated upstream
         public Matrix3 World
         {
             get { return _transform; }
+=======
+        public Matrix3 World
+        {
+            get { return _transform; }
+>>>>>>> Stashed changes
         }
 
         public bool Started { get; private set; }
@@ -111,6 +118,13 @@ namespace MathForGames
             return actorRemoved;
         }
 
+
+
+        private void CheckCollision()
+        {
+
+        }
+
         public virtual void Start()
         {
             Started = true;
@@ -125,6 +139,7 @@ namespace MathForGames
 
                 _actors[i].Update(deltaTime);
             }
+            CheckCollision();
         }
 
         public virtual void Draw()

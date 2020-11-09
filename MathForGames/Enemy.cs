@@ -15,7 +15,11 @@ namespace MathForGames
     {
         private Actor _target;
         private Color _alertColor;
+<<<<<<< Updated upstream
 
+=======
+        private Sprite _sprite;
+>>>>>>> Stashed changes
         private Vector2 _patrolPointA;
         private Vector2 _patrolPointB;
         private Vector2 _currentPoint;
@@ -70,6 +74,7 @@ namespace MathForGames
         public Enemy(float x, float y, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
+            _sprite = new Sprite("Images/enemy.png");
             PatrolPointA = patrolPointA;
             PatrolPointB = patrolPointB;
             _currentPoint = PatrolPointA;
@@ -83,7 +88,11 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
+<<<<<<< Updated upstream
   
+=======
+            _sprite = new Sprite("Images/enemy.png");
+>>>>>>> Stashed changes
             _alertColor = Color.RED;
             PatrolPointA = patrolPointA;
             PatrolPointB = patrolPointB;
@@ -157,7 +166,15 @@ namespace MathForGames
             base.Update(deltaTime);
         }
 
+<<<<<<< Updated upstream
       
 
+=======
+        public override void Draw()
+        {
+            _sprite.Draw(_localTransform);
+            base.Draw();
+        }
+>>>>>>> Stashed changes
     }
 }
