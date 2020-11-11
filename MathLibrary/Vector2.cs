@@ -84,7 +84,7 @@ namespace MathLibrary
         /// <returns></returns>
         public static float DotProduct(Vector2 lhs, Vector2 rhs)
         {
-            return (lhs.X * rhs.X) + (lhs.Y + rhs.Y);
+            return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
         }
 
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)

@@ -51,6 +51,7 @@ namespace MathForGames
         {
             //Gets the player's input to determine which direction the actor will move in on each axis 
             int xDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A))
+                
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
             int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
@@ -64,7 +65,7 @@ namespace MathForGames
 
         public override void Draw()
         {
-            _sprite.Draw(_translation);
+            _sprite.Draw(_globalTransform);
 
             base.Draw();
         }

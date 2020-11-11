@@ -93,29 +93,28 @@ namespace MathForGames
 
         public void SetTranslate(Vector2 position)
         {
-            _translation.m13 = position.X;
-            _translation.m23 = position.Y;
-            
+            _translation = Matrix3.CreateTranslation(position);
 
         }
 
         public void SetRotation(float radians)
         {
-            _rotation.m11 = (float)Math.Cos(radians);
-            _rotation.m12 = -(float)Math.Sin(radians);
-            _rotation.m21 = -(float)Math.Sin(radians);
-            _rotation.m22 = (float)Math.Cos(radians);
+            _rotation = Matrix3.CreateRotation(radians);
         }
 
         public void SetScale(float x, float y)
         {
-            _scale.m11 = x;
-            _scale.m21 = y;
+            _scale = Matrix3.CreateScale(new Vector2(x, y));
         }
 
         public void UpdateTransform()
         {
             _localTransform = _translation * _rotation * _scale;
+
+            if (_parent != null)
+                _globalTransform = _parent._globalTransform * _localTransform;
+            else
+                _globalTransform = Game.GetCurrentScene().World * _localTransform;
         }
 
 
@@ -229,10 +228,10 @@ namespace MathForGames
             //Draws the actor and a line indicating it facing to the raylib window.
             //Scaled to match console movement 
             Raylib.DrawLine(
-                (int)(LocalPosition.X * 32),
-                (int)(LocalPosition.Y * 32),
-                (int)((LocalPosition.X + Forward.X) * 32),
-                (int)((LocalPosition.Y + Forward.Y) * 32),
+                (int)(WorldPosition.X * 32),
+                (int)(WorldPosition.Y * 32),
+                (int)((WorldPosition.X + Forward.X) * 32),
+                (int)((WorldPosition.Y + Forward.Y) * 32),
 
                 Color.BLUE
 
@@ -244,10 +243,10 @@ namespace MathForGames
             Console.ForegroundColor = _color;
 
             //Only draws the actor on the console if it is within the bounds of the window
-            if(LocalPosition.X >= 0 && LocalPosition.X < Console.WindowWidth 
-                && LocalPosition.Y >= 0  && LocalPosition.Y < Console.WindowHeight)
+            if(WorldPosition.X >= 0 && WorldPosition.X < Console.WindowWidth 
+                && WorldPosition.Y >= 0  && WorldPosition.Y < Console.WindowHeight)
             {
-                Console.SetCursorPosition((int)LocalPosition.X, (int)LocalPosition.Y);
+                Console.SetCursorPosition((int)WorldPosition.X, (int)WorldPosition.Y);
                 Console.Write(_icon);
             }
             
