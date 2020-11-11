@@ -18,10 +18,10 @@ namespace MathLibrary
         public static Matrix4 CreateRotation(float radians)
         {
             return new Matrix4
-                ((float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
 
-                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0,
-                0, 0, 1);
+                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                 0 ,0, 0, 1);
         }
 
         public static Matrix4 CreateTranslation(Vector4 position)
@@ -30,7 +30,7 @@ namespace MathLibrary
                (
                 0, 0, 0, position.X,
                 0, 1, 0, position.Y,
-                0, 0, 1
+                0, 0, 0, 1
                 );
         }
 
@@ -38,12 +38,97 @@ namespace MathLibrary
         {
             return new Matrix4
             (
-                scale.X, 0, 0,
-                0, scale.Y, 0,
-                0, 0, 1
+                scale.X, 0, 0, 0,
+                0, scale.Y, 0, 0,
+                0, 0, 0, 1
             );
         }
 
+        public Matrix4(float m11, float m12, float m13, float m14,
+                      float m21, float m22, float m23, float m24,
+                      float m31, float m32, float m33, float m34) 
+        {
+            this.m11 = m11; this.m12 = m12; this.m13 = m13; this.m14 = m14;
+            this.m21 = m21; this.m22 = m22; this.m23 = m23; this.m24 = m24;
+            this.m31 = m31; this.m32 = m32; this.m33 = m33; this.m34 = m34;
+        }
 
+        public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4
+                (
+                    lhs.m11 * rhs.m11 + lhs.m12 * rhs.m21 + lhs.m13 * rhs.m31 + lhs.m14 * rhs.m11,
+
+                    lhs.m11 * rhs.m12 + lhs.m12 * rhs.m22 + lhs.m13 * rhs.m32 + lhs.m14 * rhs.m12,
+
+                    lhs.m11 * rhs.m13 + lhs.m12 * rhs.m23 + lhs.m13 * rhs.m33 + lhs.m14 * rhs.m13,
+
+
+                    lhs.m21 * rhs.m11 + lhs.m22 * rhs.m21 + lhs.m23 * rhs.m31 + lhs.m24 * rhs.m21,
+
+                    lhs.m21 * rhs.m12 + lhs.m22 * rhs.m22 + lhs.m23 * rhs.m32 + lhs.m24 * rhs.m22,
+
+                    lhs.m21 * rhs.m13 + lhs.m22 * rhs.m23 + lhs.m23 * rhs.m33 + lhs.m24 * rhs.m23,
+
+
+                    lhs.m31 * rhs.m11 + lhs.m32 * rhs.m21 + lhs.m33 * rhs.m31 + lhs.m34 * rhs.m31,
+
+                    lhs.m31 * rhs.m12 + lhs.m32 * rhs.m22 + lhs.m33 * rhs.m32 + lhs.m34 * rhs.m32,
+
+                    lhs.m31 * rhs.m13 + lhs.m32 * rhs.m23 + lhs.m33 * rhs.m33 + lhs.m34 * rhs.m33
+                    );
+
+
+        }
+
+        public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4
+                 (lhs.m11 + rhs.m11 + lhs.m12 + rhs.m21 + lhs.m13 + rhs.m31,
+
+                  lhs.m11 + rhs.m12 + lhs.m12 + rhs.m22 + lhs.m13 + rhs.m32,
+
+                  lhs.m11 + rhs.m13 + lhs.m12 + rhs.m23 + lhs.m13 + rhs.m33,
+
+
+                  lhs.m21 + rhs.m11 + lhs.m22 + rhs.m21 + lhs.m23 + rhs.m31,
+
+                  lhs.m21 + rhs.m12 + lhs.m22 + rhs.m22 + lhs.m23 + rhs.m32,
+
+                  lhs.m21 + rhs.m13 + lhs.m22 + rhs.m23 + lhs.m23 + rhs.m33,
+
+
+                  lhs.m31 + rhs.m11 + lhs.m32 + rhs.m21 + lhs.m33 + rhs.m31,
+
+                  lhs.m31 + rhs.m12 + lhs.m32 + rhs.m22 + lhs.m33 + rhs.m32,
+
+                  lhs.m31 + rhs.m13 + lhs.m32 + rhs.m23 + lhs.m33 + rhs.m33
+                  );
+        }
+
+        public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
+        {
+            return new Matrix4
+                   (lhs.m11 - rhs.m11 + lhs.m12 - rhs.m21 + lhs.m13 - rhs.m31,
+
+                    lhs.m11 - rhs.m12 + lhs.m12 - rhs.m22 + lhs.m13 - rhs.m32,
+
+                    lhs.m11 - rhs.m13 + lhs.m12 - rhs.m23 + lhs.m13 - rhs.m33,
+
+
+                    lhs.m21 - rhs.m11 + lhs.m22 - rhs.m21 + lhs.m23 - rhs.m31,
+
+                    lhs.m21 - rhs.m12 + lhs.m22 - rhs.m22 + lhs.m23 - rhs.m32,
+
+                    lhs.m21 - rhs.m13 + lhs.m22 - rhs.m23 + lhs.m23 - rhs.m33,
+
+
+                    lhs.m31 + rhs.m11 + lhs.m32 + rhs.m21 + lhs.m33 - rhs.m31,
+
+                    lhs.m31 + rhs.m12 + lhs.m32 + rhs.m22 + lhs.m33 - rhs.m32,
+
+                    lhs.m31 + rhs.m13 + lhs.m32 + rhs.m23 + lhs.m33 - rhs.m33);
+
+        }
     }
 }
