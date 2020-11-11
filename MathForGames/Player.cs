@@ -64,11 +64,8 @@ namespace MathForGames
 
         public override void Draw()
         {
-<<<<<<< Updated upstream
             _sprite.Draw(_translation);
-=======
-            _sprite.Draw(_localTransform);
->>>>>>> Stashed changes
+
             base.Draw();
         }
     }

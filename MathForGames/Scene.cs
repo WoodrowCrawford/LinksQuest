@@ -11,15 +11,9 @@ namespace MathForGames
         private Actor[] _actors;
         private Matrix3 _transform;
 
-<<<<<<< Updated upstream
         public Matrix3 World
         {
             get { return _transform; }
-=======
-        public Matrix3 World
-        {
-            get { return _transform; }
->>>>>>> Stashed changes
         }
 
         public bool Started { get; private set; }
