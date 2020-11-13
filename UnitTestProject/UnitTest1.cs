@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MathLibrary;
+using MathForGames;
 namespace UnitTestProject
 {
     [TestClass]
