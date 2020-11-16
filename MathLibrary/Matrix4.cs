@@ -22,6 +22,7 @@ namespace MathLibrary
                 ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
 
                 -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                 0, 0, 0, 0,
                  0, 0, 0, 1);
         }
 
@@ -31,7 +32,8 @@ namespace MathLibrary
                 ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
 
                 -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                 0 ,0, 0, 1);
+                 0 ,0, 0, 0,
+                 0, 0, 0, 1);
         }
 
         public static Matrix4 CreateRotationZ(float radians)
@@ -40,6 +42,7 @@ namespace MathLibrary
                 ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
 
                 -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                 0, 0, 0, 0,
                  0, 0, 0, 1);
         }
         public static Matrix4 CreateTranslation(Vector4 position)
