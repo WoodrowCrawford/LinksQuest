@@ -50,9 +50,10 @@ namespace MathLibrary
             return new Matrix4
                (
                 0, 0, 0, position.X,
-                0, 1, 0, position.Y,
-                0, 0, 0, 1
-                );
+                0, 0, 0, position.Y,
+                0, 0, 0, 0,
+                0, 0, 0, 1);
+                
         }
 
         public static Matrix4 CreateScale(Vector4 scale)
@@ -61,6 +62,7 @@ namespace MathLibrary
             (
                 scale.X, 0, 0, 0,
                 0, scale.Y, 0, 0,
+                0, 0, 0, 0,
                 0, 0, 0, 1
             );
         }
@@ -98,7 +100,14 @@ namespace MathLibrary
 
                     lhs.m31 * rhs.m12 + lhs.m32 * rhs.m22 + lhs.m33 * rhs.m32 + lhs.m34 * rhs.m32,
 
-                    lhs.m31 * rhs.m13 + lhs.m32 * rhs.m23 + lhs.m33 * rhs.m33 + lhs.m34 * rhs.m33
+                    lhs.m31 * rhs.m13 + lhs.m32 * rhs.m23 + lhs.m33 * rhs.m33 + lhs.m34 * rhs.m33,
+
+
+                    lhs.m41 * rhs.m11 + lhs.m42 * rhs.m21 + lhs.m43 * rhs.m31 + lhs.m44
+
+                    lhs.m41 * rhs.m12 + lhs.m42 * rhs.m22 + lhs.m43 * rhs.m31 + lhs.m44
+
+                    lhs.m41 * rhs.m13 + lhs.m42 * rhs.m23 + lhs.m43 * rhs.m31 + lhs.m44
                     );
 
 
