@@ -108,6 +108,11 @@ namespace MathLibrary
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z) + (lhs.W * rhs.W);
         }
 
+        public static float CrossProduct(Vector4 lhs, Vector4 rhs)
+        {
+            return (lhs.Z * rhs.W) + (lhs.W * rhs.X) + (lhs.X * rhs.Y); 
+        }
+
         public static Vector4 operator +(Vector4 lhs, Vector4 rhs)
         {
             return new Vector4(lhs.X += rhs.X, lhs.Y += rhs.Y, lhs.Z += rhs.Z, lhs.W += rhs.W);

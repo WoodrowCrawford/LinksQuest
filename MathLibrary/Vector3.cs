@@ -89,7 +89,7 @@ namespace MathForGames
 
         public static float CrossProduct(Vector3 lhs, Vector3 rhs)
         {
-            return ()
+            return (lhs.Y * rhs.Z) + (lhs.Z * rhs.X) + (lhs.X * rhs.Y);
         }
 
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)
