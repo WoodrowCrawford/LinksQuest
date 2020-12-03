@@ -92,7 +92,7 @@ namespace MathLibrary
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
-            (     lhs.m11 + rhs.m11 + lhs.m12 + rhs.m21 + lhs.m13 + rhs.m31,
+            (lhs.m11 + rhs.m11 + lhs.m12 + rhs.m21 + lhs.m13 + rhs.m31,
 
                   lhs.m11 + rhs.m12 + lhs.m12 + rhs.m22 + lhs.m13 + rhs.m32,
 
