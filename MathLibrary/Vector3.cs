@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 
-namespace MathForGames
+namespace MathLibrary
 {
     public class Vector3
     {
@@ -88,9 +89,9 @@ namespace MathForGames
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y) + (lhs.Z * rhs.Z);
         }
 
-        public static float CrossProduct(Vector3 lhs, Vector3 rhs)
+        public static Vector3 CrossProduct(Vector3 lhs, Vector3 rhs)
         {
-            return (lhs.Y * rhs.Z) + (lhs.Z * rhs.X) + (lhs.X * rhs.Y);
+            return new Vector3((lhs.Y * rhs.Z) - (lhs.Z * rhs.Y), (lhs.Z * rhs.X) - (lhs.X * rhs.Z), (lhs.X * rhs.Y) - (lhs.Y * rhs.X));
         }
 
         public static Vector3 operator +(Vector3 lhs, Vector3 rhs)

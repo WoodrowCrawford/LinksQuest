@@ -82,6 +82,13 @@ namespace MathLibrary
 
         }
 
+        public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
+        {
+            return new Vector3((lhs.m11 * rhs.X) + (lhs.m12 * rhs.X) + (lhs.m13 * rhs.X),
+                               (lhs.m21 * rhs.Y) + (lhs.m22 * rhs.Y) + (lhs.m23 * rhs.Y),
+                               (lhs.m31 * rhs.Z) + (lhs.m32 * rhs.Z) + (lhs.m33 * rhs.Z));
+        }
+
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3

@@ -121,6 +121,14 @@ namespace MathLibrary
 
         }
 
+        public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
+        {
+            return new Vector4((lhs.m11 * rhs.X) + (lhs.m12 * rhs.X) + (lhs.m13 * rhs.X) + (lhs.m14 * rhs.X),
+                               (lhs.m21 * rhs.Y) + (lhs.m22 * rhs.Y) + (lhs.m23 * rhs.Y) + (lhs.m24 * rhs.Y),
+                               (lhs.m31 * rhs.Z) + (lhs.m32 * rhs.Z) + (lhs.m33 * rhs.Z) + (lhs.m34 * rhs.Z),
+                               (lhs.m41 * rhs.W) + (lhs.m42 * rhs.W) + (lhs.m43 * rhs.W) + (lhs.m44 * rhs.W));
+        }
+
         public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4
