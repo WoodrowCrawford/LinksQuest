@@ -19,20 +19,18 @@ namespace MathLibrary
         public static Matrix4 CreateRotationX(float radians)
         {
             return new Matrix4
-                ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
-
-                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                 0, 0, 0, 0,
-                 0, 0, 0, 1);
+               (1, 0, 0, 0,
+               0, (float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+               0, -(float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+                0, 0, 0, 1);
         }
 
         public static Matrix4 CreateRotationY(float radians)
         {
             return new Matrix4
-                ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
-
-                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                 0 ,0, 0, 0,
+                ((float)Math.Cos(radians), 0, -(float)Math.Sin(radians), 0,
+                0, 1, 0, 0,
+                (float)Math.Sin(radians), 0, (float)Math.Cos(radians), 0,
                  0, 0, 0, 1);
         }
 
@@ -42,9 +40,13 @@ namespace MathLibrary
                 ((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
 
                 -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
-                 0, 0, 0, 0,
+                 0, 0, 1, 0,
                  0, 0, 0, 1);
         }
+
+      
+
+
         public static Matrix4 CreateTranslation(Vector4 position)
         {
             return new Matrix4
@@ -123,10 +125,10 @@ namespace MathLibrary
 
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
-            return new Vector4((lhs.m11 * rhs.X) + (lhs.m12 * rhs.X) + (lhs.m13 * rhs.X) + (lhs.m14 * rhs.X),
-                               (lhs.m21 * rhs.Y) + (lhs.m22 * rhs.Y) + (lhs.m23 * rhs.Y) + (lhs.m24 * rhs.Y),
-                               (lhs.m31 * rhs.Z) + (lhs.m32 * rhs.Z) + (lhs.m33 * rhs.Z) + (lhs.m34 * rhs.Z),
-                               (lhs.m41 * rhs.W) + (lhs.m42 * rhs.W) + (lhs.m43 * rhs.W) + (lhs.m44 * rhs.W));
+            return new Vector4((lhs.m11 * rhs.X) + (lhs.m12 * rhs.Y) + (lhs.m13 * rhs.Z) + (lhs.m14 * rhs.W),
+                               (lhs.m21 * rhs.X) + (lhs.m22 * rhs.Y) + (lhs.m23 * rhs.Z) + (lhs.m24 * rhs.W),
+                               (lhs.m31 * rhs.X) + (lhs.m32 * rhs.Y) + (lhs.m33 * rhs.Z) + (lhs.m34 * rhs.W),
+                               (lhs.m41 * rhs.X) + (lhs.m42 * rhs.Y) + (lhs.m43 * rhs.Z) + (lhs.m44 * rhs.W));
         }
 
         public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
