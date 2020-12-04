@@ -16,7 +16,12 @@ namespace MathForGames
             _sprite = new Sprite("Images/Map.png");
         }
 
-        
+        public override void Draw()
+        {
+            _sprite.Draw(_globalTransform);
+
+            base.Draw();
+        }
     }
 }
 

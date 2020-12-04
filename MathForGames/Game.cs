@@ -180,7 +180,7 @@ namespace MathForGames
         public void Start()
         {
             //Creates a new window for raylib
-            Raylib.InitWindow(1024, 760, "Math For Games");
+            Raylib.InitWindow(1024, 760, "Link's Quest");
             Raylib.SetTargetFPS(60);
 
             //Set up console window
@@ -191,38 +191,49 @@ namespace MathForGames
             Scene scene1 = new Scene();
             Scene scene2 = new Scene();
 
+
+            //This is the background for the game
+            Room room = new Room(16, 13, '^');
+            scene1.AddActor(room);
+            room.SetScale(33, 33);
+
             //Create the actors to add to our scene
-            Enemy enemyHigh = new Enemy(9, 5, Color.GREEN, new Vector2(0,5), new Vector2(30, 5), '■', ConsoleColor.Green);
-            Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
-            Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
+
+            //Enemy enemyHigh = new Enemy(9, 5, Color.GREEN, new Vector2(0,5), new Vector2(30, 5), '■', ConsoleColor.Green);
+            //Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
+            //Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
             
             
 
             //Initialize the enmies starting values
-            enemyHigh.Speed = 1;
-            enemyHigh.Target = player;
-            enemyHigh.SetTranslate(new Vector2(2, 5));
-            enemyMid.Speed = 1;
-            enemyMid.Target = player;
-            enemyLow.Speed = 1;
-            enemyLow.Target = player;
+
+            //enemyHigh.Speed = 1;
+            //enemyHigh.Target = player;
+            //enemyHigh.SetTranslate(new Vector2(2, 5));
+            //enemyMid.Speed = 1;
+            //enemyMid.Target = player;
+            //enemyLow.Speed = 1;
+            //enemyLow.Target = player;
             
 
             //Set player's starting speed
             player.Speed = 5;
             //Sets the player size and rotation
             player.SetTranslate(new Vector2(10, 19));
-            player.SetRotation(3);
+            player.SetRotation(0);
             player.SetScale(2, 2);
-            player.AddChild(enemyHigh);
+
+            //player.AddChild(enemyHigh);
+
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(enemyHigh);
-            scene1.AddActor(enemyMid);
-            scene1.AddActor(enemyLow);
-            scene2.AddActor(player);
+
+            //scene1.AddActor(enemyHigh);
+            //scene1.AddActor(enemyMid);
+            //scene1.AddActor(enemyLow);
+            //scene2.AddActor(player);
             
             //Sets the starting scene index and adds the scenes to the scenes array
             int startingSceneIndex = 0;
