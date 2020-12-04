@@ -122,6 +122,8 @@ namespace MathForGames
         /// <param name="y">Position on the y axis</param>
         /// <param name="icon">The symbol that will appear when drawn</param>
         /// <param name="color">The color of the symbol that will appear when drawn</param>
+        
+        //Default function for Actor class
         public Actor(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
         {
             _rayColor = Color.WHITE;
@@ -131,10 +133,16 @@ namespace MathForGames
             _velocity = new Vector2();
             _color = color;
 
-           
 
+        }
 
-
+        //Overloaded function for Actor
+        public Actor(float x, float y, char icon = ' ')
+        {
+            _icon = icon;
+            _localTransform = new Matrix3();
+            LocalPosition = new Vector2(x, y);
+            _velocity = new Vector2();
         }
 
 

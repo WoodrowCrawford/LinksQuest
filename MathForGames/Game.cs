@@ -197,6 +197,8 @@ namespace MathForGames
             Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
+            
+            
 
             //Initialize the enmies starting values
             enemyHigh.Speed = 1;
