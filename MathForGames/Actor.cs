@@ -45,7 +45,7 @@ namespace MathForGames
             set
             {
                 Vector2 lookPosition = LocalPosition + value.Normalized;
-                
+                LookAt(lookPosition);
             }
         }
 
@@ -102,6 +102,11 @@ namespace MathForGames
             _rotation = Matrix3.CreateRotation(radians);
         }
 
+        public void Rotate(float radians)
+        {
+            _rotation *= Matrix3.CreateRotation(radians);
+        }
+
         public void SetScale(float x, float y)
         {
             _scale = Matrix3.CreateScale(new Vector2(x, y));
@@ -117,12 +122,48 @@ namespace MathForGames
                 _globalTransform = Game.GetCurrentScene().World * _localTransform;
         }
 
+        public void LookAt(Vector2 position)
+        {
+            //Find the direction that the actor should look in
+            Vector2 direction = (position - LocalPosition).Normalized;
+
+            //Use the dotproduct to find the angle the actor needs to rotate
+            float dotProd = Vector2.DotProduct(Forward, direction);
+            if (Math.Abs(dotProd) > 1)
+                return;
+            float angle = (float)Math.Acos(dotProd);
+
+            //Find a perpindicular vector to the direction
+            Vector2 perp = new Vector2(direction.Y, -direction.X);
+
+            //Find the dot product of the perpindicular vector and the current forward
+            float perpDot = Vector2.DotProduct(perp, Forward);
+
+            //If the result isn't 0, use it to change the sign of the angle to be either positive or negative
+            if (perpDot != 0)
+                angle *= -perpDot / Math.Abs(perpDot);
+
+            Rotate(angle);
+        }
+
+        public bool CheckCollision(Actor other)
+        {
+            float distance = (other.WorldPosition - WorldPosition).Magnitude;
+            return distance <= other._collisionRadius + _collisionRadius;
+        }
+
+        public virtual void OnCollision(Actor player, Actor room)
+        {
+           
+        }
+
+
 
         /// <param name="x">Position on the x axis</param>
         /// <param name="y">Position on the y axis</param>
         /// <param name="icon">The symbol that will appear when drawn</param>
         /// <param name="color">The color of the symbol that will appear when drawn</param>
-        
+
         //Default function for Actor class
         public Actor(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
         {
