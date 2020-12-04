@@ -199,24 +199,30 @@ namespace MathForGames
 
             //Create the actors to add to our scene
 
-            //Enemy enemyHigh = new Enemy(9, 5, Color.GREEN, new Vector2(0,5), new Vector2(30, 5), '■', ConsoleColor.Green);
-            Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
-            //Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
+            Enemy enemyHigh = new Enemy(8, 5, Color.GREEN, new Vector2(9,5), new Vector2(14, 7), '■', ConsoleColor.Green);
+            Enemy enemyMid = new Enemy(19, 5, Color.GREEN, new Vector2(19, 5), new Vector2(23, 5), '■', ConsoleColor.Green);
+            Enemy enemyLow = new Enemy(19, 20, Color.GREEN, new Vector2(19, 20), new Vector2(19, 20), '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
-            
-            
+
+
 
             //Initialize the enmies starting values
 
-            //enemyHigh.Speed = 1;
-            //enemyHigh.Target = player;
-            //enemyHigh.SetTranslate(new Vector2(2, 5));
+            enemyHigh.Speed = 1;
+            enemyHigh.Target = player;
+            enemyHigh.SetScale(10, 10);
+
             enemyMid.Speed = 1;
             enemyMid.Target = player;
-            //enemyLow.Speed = 1;
-            //enemyLow.Target = player;
-            
+            enemyMid.SetScale(10, 10);
+
+            enemyLow.Speed = 1;
+            enemyLow.Target = player;
+            enemyLow.SetScale(10, 10);
+
+
+           
 
             //Set player's starting speed
             player.Speed = 5;
@@ -225,15 +231,16 @@ namespace MathForGames
             player.SetRotation(0);
             player.SetScale(2, 2);
 
-            //player.AddChild(enemyHigh);
+            //Adds or removes children
+
+
 
             //Add actors to the scenes
             scene1.AddActor(player);
-
-            //scene1.AddActor(enemyHigh);
+            scene1.AddActor(enemyHigh);
             scene1.AddActor(enemyMid);
-            //scene1.AddActor(enemyLow);
-            //scene2.AddActor(player);
+            scene1.AddActor(enemyLow);
+
             
             //Sets the starting scene index and adds the scenes to the scenes array
             int startingSceneIndex = 0;
@@ -256,6 +263,9 @@ namespace MathForGames
                 _scenes[_currentSceneIndex].Start();
 
             _scenes[_currentSceneIndex].Update(deltaTime);
+
+            
+            
         }
 
         //Used to display objects and other info on the screen.

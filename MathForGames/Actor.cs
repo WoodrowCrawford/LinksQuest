@@ -147,23 +147,27 @@ namespace MathForGames
         }
 
         //Default fuction for Collision for actors
-        public bool CheckCollision(Actor other)
+        public bool CheckCollision(Actor player, Actor enemy)
         {
-            float distance = (other.WorldPosition - WorldPosition).Magnitude;
-            return distance <= other._collisionRadius + _collisionRadius;
+            float distance = (player.WorldPosition - enemy.WorldPosition).Magnitude;
+            return distance <= player._collisionRadius + enemy._collisionRadius;
+            
+            
         }
 
 
         //Collision function used so that the player cant go outside the background
-        public virtual void OnCollision(Actor other)
+        public virtual void OnCollision()
         {
+           
             
         }
 
         //Collision function used when the player touches an enemy
-        public virtual void OnCollision(Actor player, Actor enemy)
+        public virtual void OnCollision(Actor player, Actor enemy, Scene scene)
         {
-
+            CheckCollision(player, enemy);
+            player.SetScale(20, 20);
         }
 
 
@@ -271,7 +275,7 @@ namespace MathForGames
         
         public virtual void Update(float deltaTime)
         {
-
+            
             UpdateTransform();
 
             //Before the actor is moved, update the direction it's facing

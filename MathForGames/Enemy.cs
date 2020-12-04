@@ -136,29 +136,41 @@ namespace MathForGames
 
             //Switch to the new patrol point if the enemy is within distance of the current one
             if (_currentPoint == PatrolPointA && distance <= 1)
+            {
                 _currentPoint = PatrolPointB;
+                Rotate(6);
+            }
+                
+            
             else if (_currentPoint == PatrolPointB && distance <= 1)
+            {
                 _currentPoint = PatrolPointA;
+                Rotate(6);
+            }
+                
 
             //Calcute new velocity to travel to the next waypoint
             direction = _currentPoint - LocalPosition;
             Velocity = direction.Normalized * Speed;
+            
         }
 
         public override void Update(float deltaTime)
         {
             //If the target can be seen change the color to red and reset the player's position
             //If the target can't be seen change the color to blue
-            if(CheckTargetInSight(1.5f, 5))
+            if(CheckTargetInSight(1.5f, 2))
             {
-                _rayColor = Color.RED;
+
                 Target.LocalPosition = new Vector2();
             }
             else
             {
                 _rayColor = Color.BLUE;
             }
+            
             UpdatePatrolLocation();
+            
             base.Update(deltaTime);
         }
       
