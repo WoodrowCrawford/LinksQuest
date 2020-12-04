@@ -39,7 +39,7 @@ namespace MathForGames
 
             get
             {
-                return new Vector2(_localTransform.m11, _localTransform.m21);
+                return new Vector2(_globalTransform.m11, _globalTransform.m21);
             }
 
             set
@@ -146,6 +146,7 @@ namespace MathForGames
             Rotate(angle);
         }
 
+        //Default fuction for Collision for actors
         public bool CheckCollision(Actor other)
         {
             float distance = (other.WorldPosition - WorldPosition).Magnitude;
@@ -250,8 +251,8 @@ namespace MathForGames
         {
             if (_velocity.Magnitude <= 0)
                 return;
+            Forward = Velocity.Normalized;
 
-           
         }
 
         public virtual void Start()
