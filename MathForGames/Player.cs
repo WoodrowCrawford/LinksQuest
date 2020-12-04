@@ -6,9 +6,8 @@ using MathLibrary;
 
 namespace MathForGames
 {
-    /// <summary>
-    /// An actor that moves based on input given by the user
-    /// </summary>
+
+    // An actor that moves based on input given by the user
     class Player : Actor
     {
         private float _speed = 1;
@@ -26,21 +25,14 @@ namespace MathForGames
             }
         }
 
-        /// <param name="x">Position on the x axis</param>
-        /// <param name="y">Position on the y axis</param>
-        /// <param name="icon">The symbol that will appear when drawn</param>
-        /// <param name="color">The color of the symbol that will appear when drawn</param>
+        //Default function for player class
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
             _sprite = new Sprite("Images/Link.png");
         }
 
-        /// <param name="x">Position on the x axis</param>
-        /// <param name="y">Position on the y axis</param>
-        /// <param name="rayColor">The color of the symbol that will appear when drawn to raylib</param>
-        /// <param name="icon">The symbol that will appear when drawn</param>
-        /// <param name="color">The color of the symbol that will appear when drawn to the console</param>
+        //Overloaed funtion of the player class
         public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {

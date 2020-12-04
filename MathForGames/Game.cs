@@ -23,22 +23,17 @@ namespace MathForGames
 
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
 
-        /// <summary>
+
         /// Used to set the value of game over.
-        /// </summary>
-        /// <param name="value">If this value is true, the game will end</param>
         public static void SetGameOver(bool value)
         {
             _gameOver = value;
         }
 
 
-        /// <summary>
+
         /// Returns the scene at the index given.
         /// Returns an empty scene if the index is out of bounds
-        /// </summary>
-        /// <param name="index">The index of the desired scene</param>
-        /// <returns></returns>
         public static Scene GetScene(int index)
         {
             if (index < 0 || index >= _scenes.Length)
@@ -48,20 +43,15 @@ namespace MathForGames
         }
 
 
-        /// <summary>
-        /// Returns the scene that is at the index of the 
-        /// current scene index
-        /// </summary>
-        /// <returns></returns>
+
+        /// Returns the scene that is at the index of the current scene index
         public static Scene GetCurrentScene()
         {
             return _scenes[_currentSceneIndex];
         }
 
-        /// <summary>
+
         /// Adds the given scene to the array of scenes.
-        /// </summary>
-        /// <param name="scene">The scene that will be added to the array</param>
         /// <returns>The index the scene was placed at. Returns -1 if
         /// the scene is null</returns>
         public static int AddScene(Scene scene)
@@ -131,10 +121,8 @@ namespace MathForGames
         }
 
 
-        /// <summary>
+
         /// Sets the current scene in the game to be the scene at the given index
-        /// </summary>
-        /// <param name="index">The index of the scene to switch to</param>
         public static void SetCurrentScene(int index)
         {
             //If the index is not within the range of the the array return
@@ -150,22 +138,15 @@ namespace MathForGames
         }
 
 
-        /// <summary>
+
         /// Returns true while a key is being pressed
-        /// </summary>
-        /// <param name="key">The ascii value of the key to check</param>
-        /// <returns></returns>
         public static bool GetKeyDown(int key)
         {
             return Raylib.IsKeyDown((KeyboardKey)key);
         }
 
 
-        /// <summary>
         /// Returns true while if key was pressed once
-        /// </summary>
-        /// <param name="key">The ascii value of the key to check</param>
-        /// <returns></returns>
         public static bool GetKeyPressed(int key)
         {
             return Raylib.IsKeyPressed((KeyboardKey)key);
@@ -199,27 +180,27 @@ namespace MathForGames
 
             //Create the actors to add to our scene
 
-            Enemy enemyHigh = new Enemy(8, 5, Color.GREEN, new Vector2(9,5), new Vector2(14, 7), '■', ConsoleColor.Green);
-            Enemy enemyMid = new Enemy(19, 5, Color.GREEN, new Vector2(19, 5), new Vector2(23, 5), '■', ConsoleColor.Green);
-            Enemy enemyLow = new Enemy(19, 20, Color.GREEN, new Vector2(19, 20), new Vector2(19, 20), '■', ConsoleColor.Green);
+            Enemy octorok1 = new Enemy(8, 5, Color.GREEN, new Vector2(9,5), new Vector2(14, 7), '■');
+            Enemy octorok2 = new Enemy(19, 5, Color.GREEN, new Vector2(19, 5), new Vector2(23, 5), '■');
+            Enemy octorok3 = new Enemy(19, 20, Color.GREEN, new Vector2(19, 20), new Vector2(19, 20), '■');
             Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
-            Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
+
 
 
 
             //Initialize the enmies starting values
 
-            enemyHigh.Speed = 1;
-            enemyHigh.Target = player;
-            enemyHigh.SetScale(10, 10);
+            octorok1.Speed = 1;
+            octorok1.Target = player;
+            octorok1.SetScale(10, 10);
 
-            enemyMid.Speed = 1;
-            enemyMid.Target = player;
-            enemyMid.SetScale(10, 10);
+            octorok2.Speed = 1;
+            octorok2.Target = player;
+            octorok2.SetScale(10, 10);
 
-            enemyLow.Speed = 1;
-            enemyLow.Target = player;
-            enemyLow.SetScale(10, 10);
+            octorok3.Speed = 1;
+            octorok3.Target = player;
+            octorok3.SetScale(10, 10);
 
 
            
@@ -237,9 +218,9 @@ namespace MathForGames
 
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(enemyHigh);
-            scene1.AddActor(enemyMid);
-            scene1.AddActor(enemyLow);
+            scene1.AddActor(octorok1);
+            scene1.AddActor(octorok2);
+            scene1.AddActor(octorok3);
 
             
             //Sets the starting scene index and adds the scenes to the scenes array
@@ -253,10 +234,7 @@ namespace MathForGames
 
 
 
-        /// <summary>
-        /// Called every frame
-        /// </summary>
-        /// <param name="deltaTime">The time between each frame</param>
+        
         public void Update(float deltaTime)
         {
             if (!_scenes[_currentSceneIndex].Started)

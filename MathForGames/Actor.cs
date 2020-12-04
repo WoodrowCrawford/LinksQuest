@@ -12,10 +12,7 @@ using Raylib_cs;
 namespace MathForGames
 {
 
-    /// <summary>
-    /// This is the base class for all objects that will 
-    /// be moved or interacted with in the game
-    /// </summary>
+   //Base class for all characters
     class Actor
     {
         protected char _icon = ' ';
@@ -147,28 +144,24 @@ namespace MathForGames
         }
 
         //Default fuction for Collision for actors
-        public bool CheckCollision(Actor player, Actor enemy)
+        public bool CheckCollision(Actor other)
         {
-            float distance = (player.WorldPosition - enemy.WorldPosition).Magnitude;
-            return distance <= player._collisionRadius + enemy._collisionRadius;
+            float distance = (other.WorldPosition - WorldPosition).Magnitude;
+            return distance <= other._collisionRadius + _collisionRadius;
             
             
         }
 
 
-        //Collision function used so that the player cant go outside the background
-        public virtual void OnCollision()
+        //Collision function used when a player touches an enemy
+        public virtual void OnCollision(Actor other)
         {
-           
+  
             
         }
 
-        //Collision function used when the player touches an enemy
-        public virtual void OnCollision(Actor player, Actor enemy, Scene scene)
-        {
-            CheckCollision(player, enemy);
-            player.SetScale(20, 20);
-        }
+  
+       
 
 
 
@@ -180,7 +173,7 @@ namespace MathForGames
         //Default function for Actor class
         public Actor(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
         {
-            _rayColor = Color.WHITE;
+
             _icon = icon;
             _localTransform = new Matrix3();
             LocalPosition = new Vector2(x, y);
@@ -200,17 +193,14 @@ namespace MathForGames
         }
 
 
-        /// <param name="x">Position on the x axis</param>
-        /// <param name="y">Position on the y axis</param>
-        /// <param name="rayColor">The color of the symbol that will appear when drawn to raylib</param>
-        /// <param name="icon">The symbol that will appear when drawn</param>
-        /// <param name="color">The color of the symbol that will appear when drawn to the console</param>
+        
         public Actor(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : this (x, y, icon, color)
         {
             _localTransform = new Matrix3();
             _rayColor = rayColor;
         }
+
         public void AddChild(Actor child)
         {
             Actor[] tempArray = new Actor[_children.Length + 1];
@@ -255,10 +245,7 @@ namespace MathForGames
 
        
 
-        /// <summary>
-        /// Updates the actors forward vector to be
-        /// the last direction it moved in
-        /// </summary>
+        //Updates the vector to face where the actor is facing
         private void UpdateFacing()
         {
             if (_velocity.Magnitude <= 0)
@@ -277,11 +264,9 @@ namespace MathForGames
         {
             
             UpdateTransform();
-
-            //Before the actor is moved, update the direction it's facing
             UpdateFacing();
 
-            //Increase position by the current velocity
+
             LocalPosition += _velocity * deltaTime;
         }
 
@@ -301,8 +286,7 @@ namespace MathForGames
             
 
 
-            //Changes the color of the console text to be this actors color
-            Console.ForegroundColor = _color;
+            
 
             //Only draws the actor on the console if it is within the bounds of the window
             if(WorldPosition.X >= 0 && WorldPosition.X < Console.WindowWidth 
@@ -312,8 +296,7 @@ namespace MathForGames
                 Console.Write(_icon);
             }
             
-            //Reset console text color to be default color
-            Console.ForegroundColor = Game.DefaultColor;
+            
         }
 
         public virtual void End()

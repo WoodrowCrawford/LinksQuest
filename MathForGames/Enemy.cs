@@ -6,11 +6,7 @@ using MathLibrary;
 
 namespace MathForGames
 {
-    /// <summary>
-    /// An enemy is an actor that is able to "see" other actors.
-    /// When given a target, an enemy will repeatedly check if it
-    /// is in its sight range. 
-    /// </summary>
+   //An enemy octorok
     class Enemy : Actor
     {
         private Actor _target;
@@ -66,10 +62,7 @@ namespace MathForGames
             }
         }
 
-        /// <param name="x">Position on the x axis</param>
-        /// <param name="y">Position on the y axis</param>
-        /// <param name="icon">The symbol that will appear when drawn</param>
-        /// <param name="color">The color of the symbol that will appear when drawn</param>
+       //Default function for enemy class
         public Enemy(float x, float y, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
@@ -79,13 +72,9 @@ namespace MathForGames
             _currentPoint = PatrolPointA;
         }
 
-        /// <param name="x">Position on the x axis</param>
-        /// <param name="y">Position on the y axis</param>
-        /// <param name="rayColor">The color of the symbol that will appear when drawn to raylib</param>
-        /// <param name="icon">The symbol that will appear when drawn</param>
-        /// <param name="color">The color of the symbol that will appear when drawn to the console</param>
-        public Enemy(float x, float y, Color rayColor, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White)
-            : base(x, y, rayColor, icon, color)
+       //Overloaded function of enemy class
+        public Enemy(float x, float y, Color rayColor, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ')
+            : base(x, y, rayColor, icon)
         {
 
             _sprite = new Sprite("Images/Octorok.png");
@@ -95,15 +84,7 @@ namespace MathForGames
             _currentPoint = PatrolPointA;
         }
 
-        /// <summary>
-        /// Checks to see if the target is within the given angle
-        /// and within the given distance. Returns false if no
-        /// target has been set. Both the angle and the distance are inclusive.
-        /// </summary>
-        /// <param name="maxAngle">The maximum angle (in radians) 
-        /// that the target can be detected.</param>
-        /// <param name="maxDistance">The maximum distance that the target can be detected.</param>
-        /// <returns></returns>
+        //Checks to see if the player is in sight
         public bool CheckTargetInSight(float maxAngle, float maxDistance)
         {
             //Checks if the target has a value before continuing
@@ -157,8 +138,7 @@ namespace MathForGames
 
         public override void Update(float deltaTime)
         {
-            //If the target can be seen change the color to red and reset the player's position
-            //If the target can't be seen change the color to blue
+            
             if(CheckTargetInSight(1.5f, 2))
             {
 
