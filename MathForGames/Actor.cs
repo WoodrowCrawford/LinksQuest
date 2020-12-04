@@ -21,7 +21,7 @@ namespace MathForGames
         protected char _icon = ' ';
         protected Vector2 _velocity;
         protected Vector2 _position;
-        protected Matrix3 _globalTransform;
+        protected Matrix3 _globalTransform = new Matrix3();
         protected Matrix3 _localTransform = new Matrix3();
         protected Matrix3 _translation = new Matrix3();
         protected Matrix3 _rotation = new Matrix3();
@@ -153,9 +153,17 @@ namespace MathForGames
             return distance <= other._collisionRadius + _collisionRadius;
         }
 
-        public virtual void OnCollision(Actor player, Actor room)
+
+        //Collision function used so that the player cant go outside the background
+        public virtual void OnCollision(Actor other)
         {
-           
+            
+        }
+
+        //Collision function used when the player touches an enemy
+        public virtual void OnCollision(Actor player, Actor enemy)
+        {
+
         }
 
 

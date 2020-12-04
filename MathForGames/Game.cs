@@ -200,7 +200,7 @@ namespace MathForGames
             //Create the actors to add to our scene
 
             //Enemy enemyHigh = new Enemy(9, 5, Color.GREEN, new Vector2(0,5), new Vector2(30, 5), '■', ConsoleColor.Green);
-            //Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
+            Enemy enemyMid = new Enemy(10, 10, Color.GREEN, new Vector2(0, 10), new Vector2(30, 10), '■', ConsoleColor.Green);
             //Enemy enemyLow = new Enemy(3, 20, Color.GREEN, new Vector2(0, 20), new Vector2(30, 20), '■', ConsoleColor.Green);
             Player player = new Player(0, 1,Color.BLUE, '#', ConsoleColor.Red);
             Goal goal = new Goal(30, 20,Color.GREEN, player, 'G', ConsoleColor.Green);
@@ -212,8 +212,8 @@ namespace MathForGames
             //enemyHigh.Speed = 1;
             //enemyHigh.Target = player;
             //enemyHigh.SetTranslate(new Vector2(2, 5));
-            //enemyMid.Speed = 1;
-            //enemyMid.Target = player;
+            enemyMid.Speed = 1;
+            enemyMid.Target = player;
             //enemyLow.Speed = 1;
             //enemyLow.Target = player;
             
@@ -231,7 +231,7 @@ namespace MathForGames
             scene1.AddActor(player);
 
             //scene1.AddActor(enemyHigh);
-            //scene1.AddActor(enemyMid);
+            scene1.AddActor(enemyMid);
             //scene1.AddActor(enemyLow);
             //scene2.AddActor(player);
             
