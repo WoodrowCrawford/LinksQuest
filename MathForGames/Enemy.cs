@@ -10,7 +10,7 @@ namespace MathForGames
     class Enemy : Actor
     {
         private Actor _target;
-        private Color _alertColor;
+
 
 
         private Sprite _sprite;
@@ -78,7 +78,6 @@ namespace MathForGames
         {
 
             _sprite = new Sprite("Images/Octorok.png");
-            _alertColor = Color.RED;
             PatrolPointA = patrolPointA;
             PatrolPointB = patrolPointB;
             _currentPoint = PatrolPointA;

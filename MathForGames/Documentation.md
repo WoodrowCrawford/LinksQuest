@@ -2,18 +2,190 @@
 
 ## Game name: Link's Quest
 ### How to play: 
-- Use the WASD keys to move around the map and try not to get caught by the Octoroks. The game is not be won at the moment.
+- Use the WASD keys to move around the map and try not to get caught by the Octoroks. The game cannot be won at the moment.
 
 ## Classes
-- Player: This is the main class that the player uses. The sprite for this class is Link.
+- #### Player: This is the main class that the player uses. The sprite for this class is Link from The Legend of Zelda.
     - #### Variables in Player:
       - Speed: Makes the player movement speed increase or decrease.
       - Sprite: This makes the player icon to be any downloaded sprite.
      - #### Functions in player:
       - public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White): This is the default function that makes a player.
       - public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White): This is the overloaded fuction of a player.
-      - public override void Update(float deltaTime) :This is used to always get the WASD input commands
-
-
-
-
+      - public override void Update(float deltaTime) : This is used to get the player movement.
+      - public override void Draw(): This is used to draw the sprite on the screen.
+     
+- #### Enemy: This is the class that the enemy sprite uses.
+    - #### Variables in Enemy:
+      - target: This variable sets the target for the enemy.
+      - alert color: This variable is option is optional and can be used if you want to get the enemy alert color.
+      - patrolPointA: This is the first location for the enemy to go to.
+      - patrolPointB: This is the second location for the enemy to go to.
+      - currentPoint: This is the enemy's starting location.
+      - speed: Makes the enemy movement speed increase or decrease.
+     - #### Functions in Enemy:
+       - public Enemy(float x, float y, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White): This is the default functions for the enemy class. It creates all of the values for it.
+       - public Enemy(float x, float y, Color rayColor, Vector2 patrolPointA, Vector2 patrolPointB, char icon = ' ', ConsoleColor color = ConsoleColor.White): This is a modified version of the create Enemy function.
+       - check target in sight: This checks to see if the player is in sight of the enemy.
+       - update control location: This updates the current location the enemy is travelling once it reaches a control point.
+       - update: This makes the enemy move consistently through the map in certain locations.
+       - draw: This draws the enemy onto the map.
+       
+- #### Room: This is the class used to create the background.
+     - #### Variables in Room:
+       - sprite: This makes the background icon for the player to move in.
+     - #### Functions in Room:
+       - Room(float x, float y, char icon): This creates the sprite of the map. 
+       - draw: This draws the map onto the screen.
+- #### Sprite: This sets the values for a sprite.
+     - #### Variables in Sprite:
+       - texture: Sets the sprite image to be the given texture.
+     - #### Functions in Sprite:
+       - sprite (Texture2D texture): Loads the texture. 
+       - sprite (string path): This loads the texture at the given path.
+       - draw: This draws the sprite using the math library.
+ - #### Actor: Base class for all characters in the game.
+   - #### Variables in Actor: 
+     - icon: This gets the sprite.
+     - velocity: The direction the sprite is moving. 
+     - position: The current sprite's position.
+     - globalTransform: Transformation that applies to all of the sprites.
+     - localTransform: Transformation that applies to a specific sprite.
+     - Translation: Moves across the x and y axis. 
+     - Rotation: This rotates the sprite at certain angles.
+     - Scale: This makes the sprite bigger or smaller.
+     - Color: This is the optional variable. It sets the console color.
+     - rayColor: This is an optional variable. It sets the ray color for the enemy.
+     - Parent: This sets the given class to be a parent to another actor.
+     - Children: This sets the given class to be a child to another actor.
+     - rotationAngle: Rotates the sprite at a given angle.
+     - collisionRadius: This sets the radius for collision detection.
+    - #### Functions in Actor:
+      - SetTranslate (Vector2 position): This sets the translate for the given actor.
+      - SetRotation (float radians) : This sets the rotation for the given actor.
+      - Rotate (float radians) : This rotates the given actor.
+      - SetScale (float x, float y) : This sets the scale for the given actor.
+      - UpdateTransform() : Updates the given transform to match the global transform.
+      - LookAt: This sets the actors viewpoint to forward.
+      - CheckCollision (Actor other) : This checks to see if any actor has collided with another actor.
+      - OnCollision (Actor other) : This checks to see what happens when an actor collides with another actor.
+      - Actor (float x, float y, char icon = ' ' , ConsoleColor color = ConsoleColor.White) : Creates the base function for all actors.
+      - Actor (float x, float y, char icon = ' ') : This is an overloaded function of the original actor function.
+      - Actor (float x, float y, char icon = ' ' , ConsoleColor color = ConsoleColor.White) : this (x, y, icon, color) : This is an optional overloaded function of the original actor function.
+      - Add Child (Actor Child) : Makes the target actor a child of the current actor.
+      - Remove Child (Actor Child) : Removes the target actor from the current actor.
+      - Update Facing(): Updates the vector to face where the actor is facing.
+      - Start: Starts the game. 
+      - Update (float deltaTime) : Updates the actors while the game has been started.
+      - Draw: Draws the actor and a line that shows it's facing. 
+      - End: Ends the game.
+  - #### Scene: The default background for the entire game.
+       - #### Variables in Scene:
+         - Actors: Calls on the actor class.
+         - Transform: Calls on the transform matrix.
+       - #### Functions in Scene:
+         - AddActor(Actor actor) : Adds an actor to the scene
+         - RemoveActor(Actor actor) : Removes an actor from the scene.
+         - public bool RemoveActor : Checks to see if an actor has been removed from the scene.
+         - CheckCollision: Checks to see if an actor has collided with another actor.
+         - Start: Starts the game.
+         - Update(float deltaTime) : Updates the actors while the game has been started.
+         - Draw: Draws the actors onto the scene.
+         - End: Ends the game.
+  - #### Game: Calls on all the functions and sets the overall game.
+    - #### Variables in Game:
+      - gameOver: A boolean that can end the game if set to true.
+      - Scenes: Gets the scene from the scene class.
+      - Current Scene Index: Gets the current scene index.
+    - #### Functions in Game: 
+      - SetGameOver (Bool Value) : Used to set the value of game over. 
+      - GetScene: Returns the scene at the index given.
+      - GetCurrentScene: Returns the scene that is at the index of the current scene index.
+      - AddScene(Scene scene) : Adds the given scene to the array of scenes.
+      - RemoveScene(Scene scene) : Removes the given scene from the array of scenes.
+      - SetCurrentScene(int index) : Sets the current scene in the game to be the scene at the given index.
+      - GetKeyDown(int index) : Return true as a key is being pressed.
+      - GetKeyPressed(int key) : Returns true while key is pressed once.
+      - Start(): Initializes all variables.
+      - Update(float deltaTime) : Updates the actors while the game has started.
+      - Draw(): Displays objects and information on the screen.
+      - End(): Called when the game has ended.
+      - Run(): Handles the main game logic including the game loop.
+ ## Math Library: The main class for defining math logic
+- #### Classes in MathLibrary:
+    - #### Vector2: gets the x and y values of the actors.
+      - #### Variables in Vector2: 
+        - x: gets the x value.
+        - y: gets the y value.
+      - #### Functions in Vector2: 
+        - Magnitude: Gets the length of the vector
+        - Vector2(): Creates Vector2.
+        - Vector2(float x, float y): Overloaded function of Vector2.
+        - Normalize(Vector2, vector): Normalizes the given vector to be equal to one.
+        - DotProduct(Vector2 lhs, Vector2 rhs): Returns the dot product of the two vectors given.
+        - Vector2 Operator +(Vector2 lhs, Vector2 rhs): Creates the addition math.
+        - Vector2 Operator -(Vector2 lhs, Vector2 rhs): Creates the subtraction math.
+        - Vector2 Operator *(Vector2 lhs, Vector2 rhs): Creates the multiplication math.
+        - Vector2 Operator /(Vector2 lhs, Vector2 rhs): Creates the division math.
+     - #### Vector3: gets the x, y and z values of the actors.
+      - #### Variables in Vector3: 
+        - x: gets the x value.
+        - y: gets the y value.
+        - z: gets the z value.
+      - #### Functions in Vector3:      
+        - Magnitude: Gets the length of the vector     
+        - Vector3(): Creates Vector3.
+        - Vector3(float x, float y, float z): Overloaded function of Vector3.
+        - Normalize(Vector3, vector): Normalizes the given vector to be equal to one.
+        - DotProduct(Vector3 lhs, Vector3 rhs): Returns the dot product of the two vectors given.
+        - Vector3 Operator +(Vector3 lhs, Vector3 rhs): Creates the addition math.
+        - Vector3 Operator -(Vector3 lhs, Vector3 rhs): Creates the subtraction math.
+        - Vector3 Operator *(Vector3 lhs, Vector3 rhs): Creates the multiplication math.
+        - Vector3 Operator *(float scalar, Vector3 lhs): overloaded function that creates the multiplication math.
+        - Vector3 Operator /(Vector3 lhs, float scalar): Creates the division math.
+     - #### Vector4: gets the x, y, z and w values of the actors.
+      - #### Variables in Vector4: 
+        - x: gets the x value.
+        - y: gets the y value.
+        - z: gets the z value.
+        - w: gets the w value.
+      - #### Functions in Vector4:      
+        - Magnitude: Gets the length of the vector     
+        - Vector4(): Creates Vector4.
+        - Vector4(float x, float y, float z, float w): Overloaded function of Vector4.
+        - Normalize(Vector4, vector): Normalizes the given vector to be equal to one.
+        - DotProduct(Vector4 lhs, Vector4 rhs): Returns the dot product of the two vectors given.
+        - CrossProduct(Vector4 lhs, Vector4 rhs): Returns the dot product of the two vectors given for Vector4.
+        - Vector4 Operator +(Vector4 lhs, Vector4 rhs): Creates the addition math.
+        - Vector4 Operator -(Vector4 lhs, Vector4 rhs): Creates the subtraction math.
+        - Vector4 Operator *(Vector4 lhs, Vector4 rhs): Creates the multiplication math.
+        - Vector4 Operator *(float scalar, Vector3 lhs): Overloaded function that creates the multiplication math.
+        - Vector4 Operator /(Vector3 lhs, float scalar): Creates the division math.
+ - #### Matrix3: the world layout.
+      - #### Variables in Matrix3: 
+         - float m11, m12, m13, m21, m22, m23, m31, m32, m33: The default positions for the world.
+     - #### Functions in Matrix3:
+       - Matrix3(): Creates the matrix3 layout.
+       - CreateRotation(float radians): Rotates the matrix at the given angle.
+       - CreateTranslation(Vector2 position): This creates a translation for the Matrix3
+       - CreateScale(Vector2 scale):  Creates a scale for the matrix given with the vector2 scale.
+       - Matrix3(float m11, float m12, float m13, float m21, float m22, float m23, float m31, float m32, float m33): This creates the matrix3.
+       - Matrix3 operator *(Matrix3 lhs, Matrix3 rhs): creates the multiplication math for Matrix3.
+       - Vector3 operator *(Matrix3 lhs, Vector3 rhs): Creates multiplcation math with the Vector3.
+       - Matrix3 operator +(Matrix3 lhs, Matrix3 rhs): Creates the addition math for Matrix3.
+       - Matrix3 operator -(Matrix3 lhs, Matrix3 rhs): Creates the subtraction math for Matrix3.
+     - #### Matrix4: the world layout for the 3d optional world.
+      - #### Variables in Matrix4: 
+         - float m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34: The default positions for the world.
+     - #### Functions in Matrix3:
+       - Matrix4(): Creates the matrix3 layout.
+       - CreateRotation X(float radians): Rotates the matrix at the given angle for X.
+       - CreateRotation Y(float radians): Rotates the matrix at the given angle for Y.
+       - CreateRotation Z(float radians): Rotates the matrix at the given angle for Z.
+       - CreateTranslation(Vector4 position): This creates a translation for the Matrix3
+       - CreateScale(Vector4 scale):  Creates a scale for the matrix given with the vector4 scale.
+       - Matrix4(float m11, float m12, float m13, float m14, float m21, float m22, float m23, float m24, float m31, float m32, float m33, float m34): This creates the matrix4.
+       - Matrix4 operator *(Matrix4 lhs, Matrix4 rhs): creates the multiplication math for Matrix4.
+       - Vector4 operator *(Matrix4 lhs, Vector4 rhs): Creates multiplcation math with the Vector4.
+       - Matrix4 operator +(Matrix4 lhs, Matrix4 rhs): Creates the addition math for Matrix4.
+       - Matrix4 operator -(Matrix4 lhs, Matrix4 rhs): Creates the subtraction math for Matrix4.

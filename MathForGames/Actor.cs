@@ -28,7 +28,7 @@ namespace MathForGames
         protected Actor _parent;
         protected Actor[] _children = new Actor[0];
         protected float _rotationAngle;
-        private float _collisionRadius;
+        protected float _collisionRadius = 1;
         public bool Started { get; private set; }
 
         public Vector2 Forward
@@ -146,8 +146,8 @@ namespace MathForGames
         //Default fuction for Collision for actors
         public bool CheckCollision(Actor other)
         {
-            float distance = (other.WorldPosition - WorldPosition).Magnitude;
-            return distance <= other._collisionRadius + _collisionRadius;
+            float distance = (WorldPosition - other.WorldPosition).Magnitude;
+            return distance <=_collisionRadius + other._collisionRadius;
             
             
         }
@@ -156,8 +156,8 @@ namespace MathForGames
         //Collision function used when a player touches an enemy
         public virtual void OnCollision(Actor other)
         {
-  
-            
+
+            other.SetScale(20, 20);
         }
 
   
