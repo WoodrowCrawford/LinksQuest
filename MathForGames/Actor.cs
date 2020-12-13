@@ -47,7 +47,7 @@ namespace MathForGames
         }
 
       
-
+        //Where the actors are located in the world
         public Vector2 WorldPosition
         {
             get
@@ -56,6 +56,7 @@ namespace MathForGames
             }
         }
 
+        //The actors local position
         public Vector2 LocalPosition
         {
             get
@@ -87,28 +88,32 @@ namespace MathForGames
 
        
 
-
+        //Sets the translation for the actor with vector 2
         public void SetTranslate(Vector2 position)
         {
             _translation = Matrix3.CreateTranslation(position);
 
         }
 
+        //Sets the rotation for the actors
         public void SetRotation(float radians)
         {
             _rotation = Matrix3.CreateRotation(radians);
         }
 
+        //Rotates the actors
         public void Rotate(float radians)
         {
             _rotation *= Matrix3.CreateRotation(radians);
         }
 
+        //Sets the scale of the actors
         public void SetScale(float x, float y)
         {
             _scale = Matrix3.CreateScale(new Vector2(x, y));
         }
 
+        //Updates the transform for the actors
         public void UpdateTransform()
         {
             _localTransform = _translation * _rotation * _scale;
@@ -201,6 +206,7 @@ namespace MathForGames
             _rayColor = rayColor;
         }
 
+        //Adds a child for the given actor
         public void AddChild(Actor child)
         {
             Actor[] tempArray = new Actor[_children.Length + 1];
@@ -215,6 +221,7 @@ namespace MathForGames
             child._parent = this;
         }
 
+        //Removes a child from the given actor
         public bool RemoveChild(Actor child)
         {
             bool childRemoved = false;
@@ -270,6 +277,7 @@ namespace MathForGames
             LocalPosition += _velocity * deltaTime;
         }
 
+        
         public virtual void Draw()
         {
             //Draws the actor and a line indicating it facing to the raylib window.

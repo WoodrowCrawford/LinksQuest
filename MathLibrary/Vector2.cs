@@ -3,11 +3,14 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace MathLibrary
 {
+    //Sets the variables
     public class Vector2
     {
         private float _x;
         private float _y;
 
+
+        //Sets the X value
         public float X
         {
             get
@@ -20,6 +23,8 @@ namespace MathLibrary
             }
         }
 
+
+        //Sets the Y value
         public float Y
         {
             get
@@ -32,6 +37,7 @@ namespace MathLibrary
             }
         }
 
+        //Gets the magnitude for vector 2
         public float Magnitude
         {
             get
@@ -41,6 +47,7 @@ namespace MathLibrary
             }
         }
 
+        //Returns a normalized version of vector 2
         public Vector2 Normalized
         {
             get
@@ -50,13 +57,14 @@ namespace MathLibrary
         }
 
         
-
+        //Sets the values for vector 2 to 0
         public Vector2()
         {
             _x = 0;
             _y = 0;
         }
 
+        
         public Vector2(float x, float y)
         {
             _x = x;
@@ -87,21 +95,25 @@ namespace MathLibrary
             return (lhs.X * rhs.X) + (lhs.Y * rhs.Y);
         }
 
+        //Makes the addition operator for vector 2
         public static Vector2 operator +(Vector2 lhs, Vector2 rhs)
         {
             return new Vector2(lhs.X += rhs.X, lhs.Y += rhs.Y);
         }
 
+        //Makes the subtraction operator for vector 2
         public static Vector2 operator -(Vector2 lhs, Vector2 rhs)
         {
             return new Vector2(lhs.X - rhs.X, lhs.Y - rhs.Y);
         }
 
+        //Creates the multiplication operator for vector 2
         public static Vector2 operator *(Vector2 lhs, float scalar)
         {
             return new Vector2(lhs.X * scalar, lhs.Y * scalar);
         }
 
+        //Creates the division operator for vector 2 
         public static Vector2 operator /(Vector2 lhs, float scalar)
         {
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);

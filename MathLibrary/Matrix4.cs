@@ -6,8 +6,10 @@ namespace MathLibrary
 {
     public class Matrix4
     {
+        //This creates the variables for the matrix 4
         public float m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44;
 
+        //This sets the variables for the matrix 4
         public Matrix4()
         {
             m11 = 1; m12 = 0; m13 = 0; m14 = 0;
@@ -16,6 +18,7 @@ namespace MathLibrary
             m41 = 0; m42 = 0; m43 = 0; m44 = 1;
         }
 
+        //Sets the rotation for the X value
         public static Matrix4 CreateRotationX(float radians)
         {
             return new Matrix4
@@ -25,6 +28,7 @@ namespace MathLibrary
                 0, 0, 0, 1);
         }
 
+        //Sets the rotation for the Y value
         public static Matrix4 CreateRotationY(float radians)
         {
             return new Matrix4
@@ -34,6 +38,7 @@ namespace MathLibrary
                  0, 0, 0, 1);
         }
 
+        //Sets the rotation for the Z value
         public static Matrix4 CreateRotationZ(float radians)
         {
             return new Matrix4
@@ -46,7 +51,7 @@ namespace MathLibrary
 
       
 
-
+        //Sets the translation matrix for matrix 4
         public static Matrix4 CreateTranslation(Vector4 position)
         {
             return new Matrix4
@@ -58,6 +63,7 @@ namespace MathLibrary
                 
         }
 
+        //Creates the scale for matrix 4 with the vector 4 scale
         public static Matrix4 CreateScale(Vector4 scale)
         {
             return new Matrix4
@@ -69,6 +75,7 @@ namespace MathLibrary
             );
         }
 
+        //Creates the variables with this. floats
         public Matrix4(float m11, float m12, float m13, float m14,
                       float m21, float m22, float m23, float m24,
                       float m31, float m32, float m33, float m34,
@@ -80,6 +87,8 @@ namespace MathLibrary
             this.m41 = m41; this.m42 = m42; this.m43 = m43; this.m44 = m44;
         }
 
+
+        //Creates the mulitplication operator for matrix 4
         public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4
@@ -123,6 +132,7 @@ namespace MathLibrary
 
         }
 
+        //Creates the multiplication operator for matrix 4 with vector 4
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
             return new Vector4((lhs.m11 * rhs.X) + (lhs.m12 * rhs.Y) + (lhs.m13 * rhs.Z) + (lhs.m14 * rhs.W),
@@ -131,6 +141,7 @@ namespace MathLibrary
                                (lhs.m41 * rhs.X) + (lhs.m42 * rhs.Y) + (lhs.m43 * rhs.Z) + (lhs.m44 * rhs.W));
         }
 
+        //Creates the addition operator for matrix 4
         public static Matrix4 operator +(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4
@@ -171,6 +182,7 @@ namespace MathLibrary
                   );
         }
 
+        //Creates the subtraction operator for matrix 4
         public static Matrix4 operator -(Matrix4 lhs, Matrix4 rhs)
         {
             return new Matrix4

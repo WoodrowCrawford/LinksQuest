@@ -234,7 +234,7 @@ namespace MathForGames
 
 
 
-        
+        //Updates the game while running
         public void Update(float deltaTime)
         {
             if (!_scenes[_currentSceneIndex].Started)

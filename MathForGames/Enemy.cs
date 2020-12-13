@@ -32,6 +32,8 @@ namespace MathForGames
             }
         }
 
+
+        //Sets the enemy target
         public Actor Target
         {
             get { return _target; }
@@ -135,6 +137,8 @@ namespace MathForGames
             
         }
 
+
+        //Updates the loctation of the enemy while the game is running
         public override void Update(float deltaTime)
         {
             
@@ -154,6 +158,7 @@ namespace MathForGames
         }
       
 
+        //Draws the enemy on the screen
         public override void Draw()
         {
             _sprite.Draw(_globalTransform);

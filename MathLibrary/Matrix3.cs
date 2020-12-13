@@ -6,9 +6,11 @@ namespace MathLibrary
 {
     public class Matrix3
     {
+        //This creates the variables for matrix 3
         public float m11, m12, m13, m21, m22, m23, m31, m32, m33;
 
 
+        //This sets the variables for the matrix 3
         public Matrix3()
         {
             m11 = 1; m12 = 0; m13 = 0;
@@ -16,6 +18,7 @@ namespace MathLibrary
             m31 = 0; m32 = 0; m33 = 1;
         }
 
+        //Sets the rotation matrix for Matrix 3
         public static Matrix3 CreateRotation(float radians)
         {
             return new Matrix3
@@ -25,6 +28,7 @@ namespace MathLibrary
                 0, 0, 1);
         }
 
+        //Sets the translation matrix for matrix 3
         public static Matrix3 CreateTranslation(Vector2 position)
         {
             return new Matrix3
@@ -35,6 +39,7 @@ namespace MathLibrary
                 );
         }
 
+        //Creates the scale for matrix 3 with the vector 2 scale
         public static Matrix3 CreateScale(Vector2 scale)
         {
             return new Matrix3
@@ -44,7 +49,8 @@ namespace MathLibrary
                 0, 0, 1
             );
         }
-           
+         
+        //Creates the variables with this. floats
         public Matrix3(float m11, float m12, float m13,
                        float m21, float m22, float m23,
                        float m31, float m32, float m33)
@@ -54,6 +60,7 @@ namespace MathLibrary
             this.m31 = m31; this.m32 = m32; this.m33 = m33;
         }
 
+        //Creates the mulitplication operator for matrix 3
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -82,6 +89,7 @@ namespace MathLibrary
 
         }
 
+        //Creates the multiplication operator for matrix 3 with vector 3
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3((lhs.m11 * rhs.X) + (lhs.m12 * rhs.Y) + (lhs.m13 * rhs.Z),
@@ -89,6 +97,8 @@ namespace MathLibrary
                                (lhs.m31 * rhs.X) + (lhs.m32 * rhs.Y) + (lhs.m33 * rhs.Z));
         }
 
+
+        //Creates the addition operator for matrix 3
         public static Matrix3 operator +(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3
@@ -114,6 +124,8 @@ namespace MathLibrary
                   );
         }
 
+
+        //Creates the subtraction operator for matrix 3
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
         {
             return new Matrix3

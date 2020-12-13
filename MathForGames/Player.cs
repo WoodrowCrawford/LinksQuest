@@ -40,7 +40,7 @@ namespace MathForGames
         }
 
         
-
+        //Updates the player's input while the game is running
         public override void Update(float deltaTime)
         {
             //Gets the player's input to determine which direction the actor will move in on each axis 
@@ -60,6 +60,8 @@ namespace MathForGames
             base.Update(deltaTime);
         }
 
+
+        //Draws the player on the screen
         public override void Draw()
         {
             _sprite.Draw(_globalTransform);

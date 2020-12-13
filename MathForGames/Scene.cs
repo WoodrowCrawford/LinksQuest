@@ -24,7 +24,7 @@ namespace MathForGames
         }
 
        
-
+        //Adds an actor from the curent scene
         public void AddActor(Actor actor)
         {
             //Create a new array with a size one greater than our old array
@@ -40,6 +40,8 @@ namespace MathForGames
             _actors = appendedArray;
         }
 
+
+        //Removes an actor from the current scene
         public bool RemoveActor(int index)
         {
             //Check to see if the index is outside the bounds of our array
@@ -77,6 +79,7 @@ namespace MathForGames
             return actorRemoved;
         }
 
+        //Checks to see if the actor has been removed from the scene
         public bool RemoveActor(Actor actor)
         {
             //Check to see if the actor was null
@@ -112,6 +115,7 @@ namespace MathForGames
             return actorRemoved;
         }
 
+        //Checks the collision between the actors
         private void CheckCollision()
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -128,12 +132,13 @@ namespace MathForGames
         }
 
 
-
+        //Starts the game
         public virtual void Start()
         {
             Started = true;
         }
 
+        //Updates the actors while the game is running
         public virtual void Update(float deltaTime)
         {
             for (int i = 0; i < _actors.Length; i++)
@@ -146,6 +151,7 @@ namespace MathForGames
             CheckCollision();
         }
 
+        //Draws the actors on the screen
         public virtual void Draw()
         {
             for (int i = 0; i < _actors.Length; i++)
